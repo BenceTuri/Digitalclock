@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="style.css">
         <link rel="icon" type="image/x-icon" href="favicon.png">
     </head>
-    <body>
+    <body onclick="openFullscreen()">
         <div class="digital-clock">
             <span class="hours">00</span>
             <span class="dots">:</span>
@@ -36,7 +36,19 @@
                 document.querySelector(".seconds").innerHTML = seconds;
             }
 
-            var updateClock = setInterval(clock, 1000);
+                var updateClock = setInterval(clock, 1000);
+                
+                var elem = document.documentElement;
+
+                function openFullscreen() {
+                    if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                    } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                    } else if (elem.msRequestFullscreen) { /* IE11 */
+                    elem.msRequestFullscreen();
+                }
+            }
         </script>
     </body>
 </html>
