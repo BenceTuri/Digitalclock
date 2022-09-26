@@ -1,7 +1,8 @@
 {
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
     "name": "Clock",
     "short_name": "Clock",
-    "start_url": "/index.html/",
+    "start_url": "https://benceturi.github.io/Digitalclock/",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#000000",
