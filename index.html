@@ -1,61 +1,104 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="black">
-        <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="black">
-        <title>Clock</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/x-icon" href="favicon.png">
-        <link rel="manifest" href="../Digitalclock/manifest.json"/>
-        <link rel="manifest" href="/manifest.webmanifest"/>
-        <meta name="Clock" content="Clock">
-        <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials" />
-        
-    </head>
-    <body onclick="openFullscreen()">
-        <div class="digital-clock">
-            <span class="hours">00</span>
-            <span class="dots">:</span>
-            <span class="minutes">00</span>
-            <span class="seconds">00</span>
-        </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="Clock" content="Clock" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="apple-touch-icon" href="icons/logo192.png" />
+  </head>
+  <body class="dark-mode">
+    <div class="digital-clock">
+      <span class="hours">00</span>
+      <span class="dots">:</span>
+      <span class="minutes">00</span>
+      <span class="seconds">00</span>
+    </div>
 
-        <script>
-            function clock(){
-                var today = new Date();
-                var hours = today.getHours();
-                var minutes = today.getMinutes();
-                var seconds = today.getSeconds();
-                if (minutes < 10){
-                    minutes = "0" + minutes
-                }
-                if (hours < 10){
-                    hours = "0" + hours
-                }
-                if (seconds < 10){
-                    seconds = "0" + seconds
-                }
-                
-                document.querySelector(".hours").innerHTML = hours;
-                document.querySelector(".minutes").innerHTML = minutes;
-                document.querySelector(".seconds").innerHTML = seconds;
+    <div class="dropdown" style="float: left">
+      <button onclick="myFunction()" class="dropbtn">&#8278;</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a onclick="darkMode()">Dark/Light mode</a>
+        <a onclick="openFullscreen()">Fullscreen</a>
+        <a href="info.html">About</a>
+      </div>
+    </div>
+    <script>
+      if ("ServiceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then((registration) => {
+            console.log("SW Registered!");
+            console.log(registration);
+          })
+          .catch((error) => {
+            console.log("SW Registration failed");
+            console.log(error);
+          });
+      }
+
+      function clock() {
+        var today = new Date();
+        var hours = today.getHours();
+        var minutes = today.getMinutes();
+        var seconds = today.getSeconds();
+        if (minutes < 10) {
+          minutes = "0" + minutes;
+        }
+        if (hours < 10) {
+          hours = "0" + hours;
+        }
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+
+        document.querySelector(".hours").innerHTML = hours;
+        document.querySelector(".minutes").innerHTML = minutes;
+        document.querySelector(".seconds").innerHTML = seconds;
+      }
+
+      var updateClock = setInterval(clock, 1000);
+
+      var elem = document.documentElement;
+
+      function openFullscreen() {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          /* Safari */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          /* IE11 */
+          elem.msRequestFullscreen();
+        }
+      }
+
+      function darkMode() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+      }
+
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      // Close the dropdown menu if the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
             }
-
-                var updateClock = setInterval(clock, 1000);
-                
-                var elem = document.documentElement;
-
-                function openFullscreen() {
-                    if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                    } else if (elem.webkitRequestFullscreen) { /* Safari */
-                    elem.webkitRequestFullscreen();
-                    } else if (elem.msRequestFullscreen) { /* IE11 */
-                    elem.msRequestFullscreen();
-                }
-            }
-        </script>
-    </body>
+          }
+        }
+      };
+    </script>
+  </body>
 </html>
