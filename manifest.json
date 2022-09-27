@@ -41,13 +41,13 @@
       "purpose": "maskable"
     },
     {
-      "src": "icons/logo512",
+      "src": "icons/logo512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
-  "start_url": "/",
+  "start_url": "/Digitalclock/",
   "background_color": "#000000",
   "theme_color": "#000000",
   "display": "standalone",
