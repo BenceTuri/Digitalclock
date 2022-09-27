@@ -1,10 +1,8 @@
 {
   "name": "Clock",
   "short_name": "Clock",
-  "start_url": ".",
-  "background_color": "#000000",
-  "theme_color": "#000000",
-  "display": "standalone",
+
+  "description": "Digital Clock",
   "icons": [
     {
       "src": "icons/logo96.png",
@@ -35,6 +33,23 @@
       "src": "icons/logo800.png",
       "sizes": "800x800",
       "type": "image/png"
+    },
+    {
+      "src": "icons/maskable_icon.png",
+      "sizes": "800x800",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/logo512",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
-  ]
+  ],
+  "start_url": "/",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "display": "standalone",
+  "scope": "/"
 }
